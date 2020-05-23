@@ -8,17 +8,21 @@ function with_callback() {
 			console.error(error);
 			return;
 		}
-		let country_list = JSON.parse(response.body);
-		country_list = country_list.map((country) => {
-			return {
-				name: country.name,
-				capital: country.capital,
-				population: country.population,
-				flag: country.flag,
-			}
-		});
+		try {
+			let country_list = JSON.parse(response.body);
+			country_list = country_list.map((country) => {
+				return {
+					name: country.name,
+					capital: country.capital,
+					population: country.population,
+					flag: country.flag,
+				}
+			});
 
-		console.log(country_list);
+			console.log(country_list);
+		} catch (e) {
+			console.error(e);
+		}
 	});
 }
 
@@ -76,4 +80,4 @@ async function main(option) {
 	}
 }
 
-main('promise');
+main('callback');
